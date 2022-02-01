@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <hr>
+        <h2> Tworzenie turnieju</h2>
+        <form th:action="@{/saveTournament}" th:object="${tournamentModel}", class="row g-3" onsubmit="return validate();" method="POST">
+            <input type="text" th:field="*{name}" placeholder="nazwa turnieju" class="form-control mb-4 col-4" required>
+            <input type="number" th:field="*{min_players}" id="min_value" placeholder="minimalna liczba uczestników" class="form-control mb-4 col-4" required>
+            <input type="number" th:field="*{max_players}" id="max_value" placeholder="maksymalna liczba uczestników" class="form-control mb-4 col-4" required>
+            <input type="hidden" th:field="*{system_code}" placeholder="system_code" class="form-control mb-4 col-4">
+            <input type="number" th:field="*{rounds}" placeholder="Ilość rund" class="form-control mb-4 col-4" required>
+            <input type="date" th:field="*{start_date}" placeholder="Data startu" class="form-control mb-4 col-4" required>
+            <input type="time" th:field="*{start_time}" placeholder="Czas startu" class="form-control mb-4 col-4" required>
+            <input type="text" th:field="*{address}" placeholder="Adres" class="form-control mb-4 col-4" required>
+
+            <button type="submit" class="btn btn-primary" onclick="return validate();"> Zapisz turniej</button>
+
+        </form>
+    </div>
+
+
+
+    <script>
+        function validate(){
+            var max = parseInt(document.getElementById('max_value').value);
+            var min = parseInt(document.getElementById('min_value').value);
+            if(min > max){
+                alert('Minimalna liczba uczestników jest większa od maksymalnej');
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

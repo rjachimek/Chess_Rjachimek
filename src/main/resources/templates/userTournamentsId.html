@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="layout/root_layout">
+<head>
+    <script type="text/javascript" src="js/sort-table.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Chess</title>
+    <link rel="icon" type="image/x-icon" href="../../../../../../Videos/Nioh/startbootstrap-agency-gh-pages/assets/favicon.ico" />
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+</head>
+<body>
+
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="topnav">
+            <a class="topnaVL " href="/index">Strona Główna</a>
+            <a sec:authorize="isAuthenticated()" class="topnaVL active" href="/userTournaments">Twoje turnieje</a>
+
+            <a sec:authorize="isAnonymous()" class="topnaVR" href="/login4">Logowanie</a>
+            <a sec:authorize="isAnonymous()" class="topnaVR" href="/register3">Rejestracja</a>
+
+            <a sec:authorize="isAuthenticated()" class="topnaVR" href="/perform_logout">Wyloguj</a>
+            <a sec:authorize="isAuthenticated()" class="topnaVR" href="/editUser"><span sec:authentication="name">Bob</span></a>
+        </div>
+
+        <div class="col-sm">
+            <h1> <br> </h1>
+            <table class="js-sort-table table table-responsive" id="sort"
+                   border="1">
+                <thead align="center" class="thClass">
+                <th align="center" class="js-sort-string">Szczegóły turnieju</th>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <label>Nazwa Turnieju: <div th:text="${UserTournament.tournament.name}"></div></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label> Maksymalna liczba graczy: <div th:text="${UserTournament.tournament.max_players}"></div></label>
+                    </td>
+                </tr>
+                    <tr>
+                        <td>
+                            <label>Minimalna liczba graczy:  <div th:text="${UserTournament.tournament.min_players}"></div></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> Liczba rund:  <div th:text="${UserTournament.tournament.rounds}"></div></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> Data startu:  <div th:text="${UserTournament.tournament.start_date}"></div></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label> Czas startu: <div th:text="${UserTournament.tournament.start_time}"></div></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>  Adres: <div th:text="${UserTournament.tournament.address}"></div></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+</body>
+</html>

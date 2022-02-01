@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+
+</head>
+<body>
+<div class="form">
+
+    <form class="row g-3" method="post" action="/register3" th:object="${signUpRequest2}">
+        <h2>Rejestracja</h2>
+        <div class="input-box col-md-8">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" name="username" id="validation1" class="form-control" placeholder="Nazwa użytkownika" required>
+        </div>
+        <div class="input-box col-md-8">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="email" name="email" id="validation2" class="form-control" placeholder="E-mail" required>
+        </div>
+        <div class="input-box col-md-8">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" name="name" id="validation3" class="form-control" placeholder="Imie" required>
+        </div>
+        <div class="input-box col-md-8">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" name="surname" id="validation4" class="form-control" placeholder="Nazwisko" required>
+        </div>
+        <div class="input-box col-md-8">
+            <label for="validation6" class="form-label">Data urodzenia</label>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="date" name="birthday" id="validation5" class="form-control" placeholder="Data urodzenia" required>
+        </div>
+        <div class="input-box col-md-8">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" name="city" id="validation6" class="form-control" placeholder="Miasto"required>
+        </div>
+        <div class="input-box col-md-8">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Hasło" required >
+        </div>
+
+        <div class="input-box col-md-8">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="password" name="password" id="validation8" class="form-control" placeholder="Powtórz hasło" required oninput="checkPasswordMatch(this);"/>
+        </div>
+
+        <div class="input-box" type="hidden">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="hidden" name="role" placeholder="role" value="user">
+        </div>
+<!--        <label  class="form-check" for="invalidCheck">
+            <input type="checkbox" id="invalidCheck">
+            <span class="label">Akceptuje warunki zawarte w <a href="/registration">regulamin</a></span>
+            <div class="invalid-feedback">
+                Musisz się zgodzić na warunki zawartę w regulaminie.
+            </div>
+        </label>-->
+        <div class="alert alert-danger" role="alert">
+            Użytkownik o takich danych już istnieje
+        </div>
+        <div class="input-box">
+            <input type="submit" name="sign-in" value="Zatwierdź">
+        </div>
+        <a href="/index">Strona główna</a>
+    </form>
+
+</div>
+
+<script>
+    function checkPasswordMatch(fieldConfirmPassword) {
+        if (fieldConfirmPassword.value != $("#password").val()) {
+            fieldConfirmPassword.setCustomValidity("Hasła nie są takie same");
+        } else {
+            fieldConfirmPassword.setCustomValidity("");
+        }
+    }
+</script>
+
+</body>
+</html>
